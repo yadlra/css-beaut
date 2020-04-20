@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap");
+
+body {
+  background: #ffff99;
+  text-align: center;
+}
+
+.heart {
+  color: #ff1493;
+  position: absolute;
+  animation: heart 3s linear infinite;
+  margin-left: -40px;
+}
+
+@function shadowed($color) {
+  $val: 0px 0px $color;
+  @for $i from 1 through 300 {
+    $val: #{$val}, #{$i}px #{$i}px #{$color};
+  }
+  @return $val;
+}
+
+$color: #aeb;
+
+.text {
+  margin-left: -30px; /* optical correction */
+}
+
+p {
+  margin-top: 50vh;
+  width: 45px;
+  display: inline-block;
+  font-size: 0px;
+  font-family: "Fjalla One";
+  font-weight: 900;
+  color: #ffffff;
+}
+
+@for $i from 1 to 10 {
+  p:nth-child(#{$i}) {
+    text-shadow: shadowed(adjust-hue($color, $i * 30));
+    animation: showup 5s infinite $i * 0.2s;
+  }
+}
+
+@keyframes showup {
+  0% {
+    font-size: 0px;
+    transform: rotate(90deg);
+  }
+  5% {
+    font-size: 60px;
+  }
+  10% {
+    font-size: 66px;
+    transform: rotate(0deg);
+  }
+  60% {
+    font-size: 66px;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    font-size: 66px;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes heart {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    left: 50vw;
+    top: 35vh;
+    opacity: 0;
+    font-size: 42px;
+  }
+  50% {
+    left: 50vw;
+    top: 35vh;
+    opacity: 1;
+    font-size: 42px;
+  }
+  75% {
+    left: 50vw;
+    top: 35vh;
+    opacity: 1;
+    font-size: 42px;
+  }
+  100% {
+    opacity: 0;
+  }
+}
